@@ -13,26 +13,26 @@
             (
                 SELECT COUNT(1)
                 FROM TB_FOLLOW F
-                WHERE F.FOLLOWED_MEMBER_ID = MEMBER_ID
+                WHERE F.FOLLOWED_BLOG_ID = MEMBER_ID
             ) AS LIKE_COUNT,
             CASE
                 WHEN EXISTS (
                     SELECT 1
                     FROM TB_FOLLOW F
-                    WHERE F.FOLLOWED_MEMBER_ID = MEMBER_ID
-                    AND F.FOLLOWER_MEMBER_ID = #{viewerId}
+                    WHERE F.FOLLOWED_BLOG_ID = MEMBER_ID
+                    AND F.FOLLOWER_BLOG_ID = #{viewerId}
                 ) THEN 1
                 ELSE 0
             END AS LIKED
         FROM TB_BLOG B
         JOIN TB_MEMBER M USING(MEMBER_ID)
-        WHERE MEMBER_ID = #{memberId}
+        WHERE BLOG_ID = #{memberId}
     </select>
 
     <delete id="unlikeBlog">
         DELETE FROM TB_FOLLOW
-        WHERE FOLLOWED_MEMBER_ID = #{memberId}
-        AND FOLLOWER_MEMBER_ID = #{viewerId}
+        WHERE FOLLOWED_BLOG_ID = #{memberId}
+        AND FOLLOWER_BLOG_ID = #{viewerId}
     </delete>
 
     <insert id="likeBlog">
