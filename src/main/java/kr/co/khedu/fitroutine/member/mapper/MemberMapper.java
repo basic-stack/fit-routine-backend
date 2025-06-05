@@ -12,4 +12,6 @@ public interface MemberMapper {
     MemberProfile getMemberProfile(long memberId);
 
     int editMemberProfile(MemberEditInfo memberEditInfo);
+
+    int updateMemberDetail(MemberEditInfo memberEditInfo);
 }

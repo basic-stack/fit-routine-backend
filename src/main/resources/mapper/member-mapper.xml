@@ -22,4 +22,33 @@
         JOIN TB_MEMBER_DETAIL USING (MEMBER_ID)
         WHERE MEMBER_ID = #{memberId}
     </select>
+
+    <update id="editMemberProfile" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberEditInfo">
+        UPDATE TB_MEMBER
+        <set>
+            <if test="nickname != ''">
+                NICKNAME = #{nickname},
+            </if>
+            <if test="newPassword != ''">
+                PASSWORD = #{newPassword},
+            </if>
+            <if test="phone != ''">
+                PHONE = #{phone},
+            </if>
+        </set>
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <update id="updateMemberDetail" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberEditInfo">
+        UPDATE TB_MEMBER_DETAIL
+        <set>
+            <if test="height != null">
+                HEIGHT = #{height},
+            </if>
+            <if test="weight != null">
+                WEIGHT = #{weight},
+            </if>
+        </set>
+        WHERE MEMBER_ID = #{memberId}
+    </update>
 </mapper>
