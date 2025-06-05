@@ -19,33 +19,33 @@ public final class BlogController {
         this.blogService = blogService;
     }
 
-    @GetMapping("/{memberId}")
-    public BlogDetail getBlogDetail(@PathVariable long memberId) {
+    @GetMapping("/{blogId}")
+    public BlogDetail getBlogDetail(@PathVariable long blogId) {
         // 토큰 서비스 추가 시 수정
         long viewerId = 4;
-        return blogService.getBlogDetail(memberId, viewerId);
+        return blogService.getBlogDetail(blogId, viewerId);
     }
 
-    @DeleteMapping("/{memberId}/likes")
+    @DeleteMapping("/{blogId}/likes")
     public String unlikeBlog(
-            @PathVariable long memberId,
+            @PathVariable long blogId,
             @RequestHeader("Authorization") String token
     ) {
         // 추후 토큰으로 로그인 유저 memberId만 추출
         long viewerId = Integer.parseInt(token); // 추후 변경 예정
 
-        return blogService.unlikeBlog(memberId, viewerId) ? "success" : "failure";
+        return blogService.unlikeBlog(blogId, viewerId) ? "success" : "failure";
     }
 
-    @PostMapping("/{memberId}/likes")
+    @PostMapping("/{blogId}/likes")
     public String likeBlog(
-            @PathVariable long memberId,
+            @PathVariable long blogId,
             @RequestHeader("Authorization") String token
     ) {
         // 추후 토큰으로 로그인 유저 memberId만 추출
         long viewerId = Integer.parseInt(token); // 추후 변경 예정
 
-        return blogService.likeBlog(memberId, viewerId)  ? "success" : "failure";
+        return blogService.likeBlog(blogId, viewerId)  ? "success" : "failure";
     }
 
 }
