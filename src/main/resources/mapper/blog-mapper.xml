@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.khedu.fitroutine.blog.mapper.BlogMapper">
     <select id="getBlogDetail" resultType="kr.co.khedu.fitroutine.blog.model.dto.BlogDetail">
         SELECT
-            MEMBER_ID,
+            B.BLOG_ID,
             NICKNAME,
             B.GRADE,
             B.INTRODUCE,
@@ -13,30 +13,30 @@
             (
                 SELECT COUNT(1)
                 FROM TB_FOLLOW F
-                WHERE F.FOLLOWED_BLOG_ID = MEMBER_ID
+                WHERE F.FOLLOWED_BLOG_ID = BLOG_ID
             ) AS LIKE_COUNT,
             CASE
                 WHEN EXISTS (
                     SELECT 1
                     FROM TB_FOLLOW F
-                    WHERE F.FOLLOWED_BLOG_ID = MEMBER_ID
+                    WHERE F.FOLLOWED_BLOG_ID = B.BLOG_ID
                     AND F.FOLLOWER_BLOG_ID = #{viewerId}
                 ) THEN 1
                 ELSE 0
             END AS LIKED
         FROM TB_BLOG B
         JOIN TB_MEMBER M USING(MEMBER_ID)
-        WHERE BLOG_ID = #{memberId}
+        WHERE BLOG_ID = #{blogId}
     </select>
 
     <delete id="unlikeBlog">
         DELETE FROM TB_FOLLOW
-        WHERE FOLLOWED_BLOG_ID = #{memberId}
+        WHERE FOLLOWED_BLOG_ID = #{blogId}
         AND FOLLOWER_BLOG_ID = #{viewerId}
     </delete>
 
     <insert id="likeBlog">
         INSERT INTO TB_FOLLOW
-        VALUES (#{memberId}, #{viewerId})
+        VALUES (#{blogId}, #{viewerId})
     </insert>
 </mapper>
