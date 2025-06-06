@@ -26,14 +26,14 @@
     <update id="editMemberProfile" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberEditInfo">
         UPDATE TB_MEMBER
         <set>
-            <if test="nickname != ''">
+            <if test="nickname != null  nickname != ''">
                 NICKNAME = #{nickname},
             </if>
-            <if test="newPassword != ''">
+            <if test="newPassword != null and newPassword != ''">
                 PASSWORD = #{newPassword},
             </if>
-            <if test="phone != ''">
-                PHONE = #{phone},
+            <if test="phone != null and phone != ''">
+                PHONE = #{phone}
             </if>
         </set>
         WHERE MEMBER_ID = #{memberId}
@@ -46,7 +46,7 @@
                 HEIGHT = #{height},
             </if>
             <if test="weight != null">
-                WEIGHT = #{weight},
+                WEIGHT = #{weight}
             </if>
         </set>
         WHERE MEMBER_ID = #{memberId}
