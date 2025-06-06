@@ -22,7 +22,7 @@ public final class MemberController {
         return ResponseEntity.ok(memberService.getMemberProfile(memberId));
     }
 
-    @PostMapping("/me/edit")
+    @PostMapping("/me")
     public ResponseEntity<?> editMemberProfile(@RequestBody MemberEditInfo memberEditInfo) {
         System.out.println("요청 들어옴");
         System.out.println("Controller에서 MemberEditInfo" + memberEditInfo);
