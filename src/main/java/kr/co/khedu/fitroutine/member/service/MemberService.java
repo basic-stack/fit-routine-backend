@@ -21,19 +21,22 @@ public class MemberService {
     @Transactional
     public boolean editMemberProfile(MemberEditInfo memberEditInfo) {
         System.out.println("Service에 요청은 들어옴");
-        int result1 = memberMapper.editMemberProfile(memberEditInfo);
-        System.out.println("Service에서 result1 성공");
-        if (result1 <= 0) {
-            System.out.println("Service에서 result1 실패");
-            return false;
+        if (memberEditInfo.getNickname() != null ||
+            memberEditInfo.getPhone() != null ||
+            memberEditInfo.getNewPassword() != null) {
+
+            if (memberMapper.editMemberProfile(memberEditInfo) <= 0) {
+                System.out.println("Service에서 result1 실패");
+                return false;
+            };
+            System.out.println("Service에서 result1 성공");
         }
 
         if (memberEditInfo.getHeight() != null || memberEditInfo.getWeight() != null) {
-            int result2 = memberMapper.updateMemberDetail(memberEditInfo);
-            if (result2 <= 0) {
+            if (memberMapper.updateMemberDetail(memberEditInfo) <= 0) {
                 System.out.println("Service에서 result2 실패");
                 return false;
-            }
+            };
             System.out.println("Service에서 result2 성공");
         }
 
