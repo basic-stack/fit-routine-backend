@@ -24,6 +24,12 @@
         WHERE MEMBER_ID = #{memberId}
     </select>
 
+    <select id="checkPassword" resultType="String">
+        SELECT PASSWORD
+        FROM TB_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
     <update id="editMemberProfile" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberEditInfo">
         UPDATE TB_MEMBER
         <set>

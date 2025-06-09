@@ -14,4 +14,6 @@ public interface MemberMapper {
     int editMemberProfile(MemberEditInfo memberEditInfo);
 
     int updateMemberDetail(MemberEditInfo memberEditInfo);
+
+    String checkPassword(long memberId);
 }

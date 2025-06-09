@@ -3,6 +3,7 @@ package kr.co.khedu.fitroutine.member.service;
 import kr.co.khedu.fitroutine.member.mapper.MemberMapper;
 import kr.co.khedu.fitroutine.member.model.dto.MemberEditInfo;
 import kr.co.khedu.fitroutine.member.model.dto.MemberProfile;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,5 +40,9 @@ public class MemberService {
         }
 
         return result;
+    }
+
+    public String checkPassword(long memberId) {
+        return (memberMapper.checkPassword(memberId));
     }
 }
