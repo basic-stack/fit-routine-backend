@@ -3,27 +3,26 @@ package kr.co.khedu.fitroutine.member.model.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-public class MemberEditInfo {
-    private long memberId;
-    private String nickname;
-    private String newPassword;
-    private String phone;
-    private Integer height;
-    private Integer weight;
+public final class MemberEditInfo {
+    private Long memberId;
+    private final String nickname;
+    private final String newPassword;
+    private final String phone;
+    private final Integer height;
+    private final Integer weight;
 
     @Builder
-    public MemberEditInfo(
-            long memberId,
+    private MemberEditInfo(
+            Long memberId,
             String nickname,
             String newPassword,
             String phone,
             Integer height,
-            Integer weight) {
+            Integer weight
+    ) {
         this.memberId = memberId;
         this.nickname = nickname;
         this.newPassword = newPassword;

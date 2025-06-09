@@ -20,29 +20,24 @@ public class MemberService {
 
     @Transactional
     public boolean editMemberProfile(MemberEditInfo memberEditInfo) {
-        System.out.println("Service에 요청은 들어옴");
-        if ( (memberEditInfo.getNickname() != null && !memberEditInfo.getNickname().isEmpty()) ||
-             (memberEditInfo.getPhone() != null  && !memberEditInfo.getPhone().isEmpty()) ||
-             (memberEditInfo.getNewPassword() != null && !memberEditInfo.getNewPassword().isEmpty())
+        boolean result = true;
+        if (memberEditInfo.getNickname() != null ||
+                memberEditInfo.getPhone() != null ||
+                memberEditInfo.getNewPassword() != null
         ) {
-
             if (memberMapper.editMemberProfile(memberEditInfo) <= 0) {
-                System.out.println("Service에서 result1 실패");
-                return false;
-            };
-            System.out.println("Service에서 result1 성공");
+                result = false;
+            }
         }
 
         if (memberEditInfo.getHeight() != null ||
-            memberEditInfo.getWeight() != null) {
-
+                memberEditInfo.getWeight() != null
+        ) {
             if (memberMapper.updateMemberDetail(memberEditInfo) <= 0) {
-                System.out.println("Service에서 result2 실패");
-                return false;
-            };
-            System.out.println("Service에서 result2 성공");
+                result = false;
+            }
         }
 
-        return true;
+        return result;
     }
 }

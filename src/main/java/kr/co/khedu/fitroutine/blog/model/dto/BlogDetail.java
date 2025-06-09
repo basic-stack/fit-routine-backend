@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 public final class BlogDetail {
-    private final long memberId;
+    private final long blogId;
     private final String nickname;
     private final int grade;
     private final String introduce;
@@ -15,7 +15,7 @@ public final class BlogDetail {
 
     @Builder
     private BlogDetail(
-            long memberId,
+            long blogId,
             String nickname,
             int grade,
             String introduce,
@@ -23,7 +23,7 @@ public final class BlogDetail {
             int likeCount,
             boolean liked
     ) {
-        this.memberId = memberId;
+        this.blogId = blogId;
         this.nickname = nickname;
         this.grade = grade;
         this.introduce = introduce;
