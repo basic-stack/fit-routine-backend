@@ -1,7 +1,7 @@
 package kr.co.khedu.fitroutine.board.service;
 
-import kr.co.khedu.fitroutine.board.model.dto.BoardCreate;
 import kr.co.khedu.fitroutine.board.model.dao.BoardMapper;
+import kr.co.khedu.fitroutine.board.model.dto.BoardCreate;
 import kr.co.khedu.fitroutine.board.model.dto.PopularBoard;
 import org.springframework.stereotype.Service;
 
