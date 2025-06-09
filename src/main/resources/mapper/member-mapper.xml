@@ -26,7 +26,7 @@
     <update id="editMemberProfile" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberEditInfo">
         UPDATE TB_MEMBER
         <set>
-            <if test="nickname != null  nickname != ''">
+            <if test="nickname != null and nickname != ''">
                 NICKNAME = #{nickname},
             </if>
             <if test="newPassword != null and newPassword != ''">
