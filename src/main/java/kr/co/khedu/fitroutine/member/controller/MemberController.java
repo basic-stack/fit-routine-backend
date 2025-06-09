@@ -21,7 +21,6 @@ public final class MemberController {
 
         return ResponseEntity.ok(memberService.getMemberProfile(memberId));
     }
-    
     @PutMapping("/me")
     public ResponseEntity<?> editMemberProfile(@RequestBody MemberEditInfo memberEditInfo) {
         // 추후에 토큰에서 회원을 얻도록 변경해야 합니다.
