@@ -39,4 +39,10 @@
         )
         AND M.IS_DELETED = 'Y'
     </select>
+
+    <delete id="deleteLike">
+        DELETE TB_FOLLOW
+        WHERE FOLLOWED_MEMBER_ID = #{memberId}
+        AND FOLLOWER_MEMBER_ID = #{loginedId}
+    </delete>
 </mapper>

@@ -22,4 +22,6 @@ public final class MemberService {
     public List<? extends BlogLikeList> getLikeList(long memberId) {
         return memberMapper.getLikeList(memberId);
     }
+
+    public boolean deleteLike(long memberId, long loginedId) { return memberMapper.deleteLike(memberId, loginedId) > 0; }
 }

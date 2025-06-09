@@ -14,4 +14,6 @@ public interface MemberMapper {
     MemberProfile getMemberProfile(long memberId);
 
     List<? extends BlogLikeList> getLikeList(long memberId);
+
+    int deleteLike(long memberId, long loginedId);
 }

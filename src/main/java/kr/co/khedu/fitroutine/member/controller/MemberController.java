@@ -3,9 +3,7 @@ package kr.co.khedu.fitroutine.member.controller;
 import kr.co.khedu.fitroutine.member.model.dto.BlogLikeList;
 import kr.co.khedu.fitroutine.member.service.MemberService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,5 +30,15 @@ public final class MemberController {
         long memberId = 1;
 
         return ResponseEntity.ok(memberService.getLikeList(memberId));
+    }
+
+    @DeleteMapping("/likeList/delete")
+    public ResponseEntity<?> deleteLikeList(@RequestParam long memberId) {
+        long loginedId = 1;
+        boolean result = memberService.deleteLike(memberId, loginedId);
+        if (!result) {
+            return ResponseEntity.status(400).body("failure");
+        }
+        return ResponseEntity.ok("success");
     }
 }
