@@ -5,17 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
-@ToString
-public class BlogLikeList {
-    private long memberId;
-    private String nickname;
-    private char gender;
-    private int grade;
+public final class BlogLikeList {
+    private final long memberId;
+    private final String nickname;
+    private final char gender;
+    private final int grade;
 
     @Builder
-    public BlogLikeList(long memberId, String nickname, char gender, int grade) {
+    private BlogLikeList(long memberId, String nickname, char gender, int grade) {
         this.memberId = memberId;
         this.nickname = nickname;
         this.gender = gender;

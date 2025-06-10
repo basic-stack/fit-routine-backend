@@ -3,26 +3,58 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//KO"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.khedu.fitroutine.member.mapper.MemberMapper">
-    <select id="findMemberById" resultType="kr.co.khedu.fitroutine.member.model.vo.Member">
+    <select id="findMemberByEmail" resultType="kr.co.khedu.fitroutine.member.model.vo.Member">
         SELECT *
         FROM TB_MEMBER
-        WHERE MEMBER_ID = #{memberId}
+        WHERE EMAIL = #{email}
+    </select>
+    <select id="findMemberByBlogId" resultType="kr.co.khedu.fitroutine.member.model.vo.Member">
+        SELECT *
+        FROM TB_MEMBER M
+        JOIN TB_BLOG B USING (MEMBER_ID)
+        WHERE BLOG_ID = #{blogId}
     </select>
     <select id="getMemberProfile" resultType="kr.co.khedu.fitroutine.member.model.dto.MemberProfile">
         SELECT
-            MEMBER_ID,
-            EMAIL,
-            NICKNAME,
-            BIRTH_AT,
-            PHONE,
-            GENDER,
-            HEIGHT,
-            WEIGHT
+        MEMBER_ID,
+        EMAIL,
+        NICKNAME,
+        BIRTH_AT,
+        PHONE,
+        GENDER,
+        HEIGHT,
+        WEIGHT
         FROM TB_MEMBER
         JOIN TB_MEMBER_DETAIL USING (MEMBER_ID)
         WHERE MEMBER_ID = #{memberId}
     </select>
-
+    <update id="editMemberProfile" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberEditInfo">
+        UPDATE TB_MEMBER
+        <set>
+            <if test="nickname != null">
+                NICKNAME = #{nickname},
+            </if>
+            <if test="newPassword != null">
+                PASSWORD = #{newPassword},
+            </if>
+            <if test="phone != null">
+                PHONE = #{phone}
+            </if>
+        </set>
+        WHERE MEMBER_ID = #{memberId}
+    </update>
+    <update id="updateMemberDetail" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberEditInfo">
+        UPDATE TB_MEMBER_DETAIL
+        <set>
+            <if test="height != null">
+                HEIGHT = #{height},
+            </if>
+            <if test="weight != null">
+                WEIGHT = #{weight}
+            </if>
+        </set>
+        WHERE MEMBER_ID = #{memberId}
+    </update>
     <select id="getLikeList" resultType="kr.co.khedu.fitroutine.member.model.dto.BlogLikeList">
         SELECT
             M.MEMBER_ID,
@@ -37,7 +69,7 @@
             FROM TB_FOLLOW
             WHERE FOLLOWER_MEMBER_ID = #{memberId}
         )
-        AND M.IS_DELETED = 'Y'
+        AND M.IS_DELETED = 'N'
     </select>
 
     <delete id="deleteLike">

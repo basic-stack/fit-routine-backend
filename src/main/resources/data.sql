@@ -4,13 +4,31 @@ INSERT INTO TB_MENU
 VALUES (SEQ_MENU_ID.NEXTVAL, '메뉴2', 15, 10, 20, 'SOUPS');
 
 INSERT INTO TB_MEMBER
-VALUES (1, 'abc@gmail.com', 'asdf1234', '뽀리', 'F', sysdate, '010-1234-5678', sysdate, 'Y');
+VALUES (1, 'test_1@gmail.com', '$2a$10$fIfhtxnZYd2hdA9S5x38Deq2HGotuk.ASz0DQe8sQz82umYm7OYMO', '뽀리', 'F', sysdate, '010-1234-5678', sysdate, 'Y');
 INSERT INTO TB_MEMBER
-VALUES (2, 'qwer@gmail.com', 'qwer1234', '재롱이', 'M', sysdate, '010-1111-2222', sysdate, 'Y');
+VALUES (2, 'test_2@gmail.com', '$2a$10$fIfhtxnZYd2hdA9S5x38Deq2HGotuk.ASz0DQe8sQz82umYm7OYMO', '재롱이', 'M', sysdate, '010-1111-2222', sysdate, 'Y');
 INSERT INTO TB_MEMBER
-VALUES (3, 'test1@gmail.com', 'qwer1234', '가나', 'M', sysdate, '010-1311-2222', sysdate, 'Y');
+VALUES (3, 'test_3@gmail.com', '$2a$10$fIfhtxnZYd2hdA9S5x38Deq2HGotuk.ASz0DQe8sQz82umYm7OYMO', '가나', 'M', sysdate, '010-1311-2222', sysdate, 'Y');
 INSERT INTO TB_MEMBER
-VALUES (4, 'test2@gmail.com', 'qwer1234', '다라', 'F', sysdate, '010-1611-2222', sysdate, 'Y');
+VALUES (4, 'test_4@gmail.com', '$2a$10$fIfhtxnZYd2hdA9S5x38Deq2HGotuk.ASz0DQe8sQz82umYm7OYMO', '다라', 'F', sysdate, '010-1611-2222', sysdate, 'Y');
+
+INSERT INTO TB_BLOG
+VALUES (1, 1, '저는 뽀리입니다. 꽤 귀엽구요\n잘 부탁합니다.', 120);
+INSERT INTO TB_BLOG
+VALUES (2, 2, '저는 재롱이입니다. 굉장히 싸납구요\n조심하세요.', 57);
+INSERT INTO TB_BLOG
+VALUES (3, 3, '저는 담비입니다.\n구운게 아니라 원래 색깔입니다.', 1000);
+INSERT INTO TB_BLOG
+VALUES (4, 4, '저는 환희입니다. \n항상 감사하구요.\n주인만 물어요.\n센척 엄청합니다.', 650);
+
+INSERT INTO TB_MEMBER_DETAIL
+VALUES (1, 164, 66);
+INSERT INTO TB_MEMBER_DETAIL
+VALUES (2, 170, 70);
+INSERT INTO TB_MEMBER_DETAIL
+VALUES (3, 181, 85);
+INSERT INTO TB_MEMBER_DETAIL
+VALUES (4, 155, 45);
 
 INSERT INTO TB_FOLLOW
 VALUES (1, 2);
@@ -30,15 +48,6 @@ VALUES (1, 160, 43);
 
 INSERT INTO TB_MEMBER_DETAIL
 VALUES (2, 178, 67);
-
-INSERT INTO TB_BLOG
-VALUES (SEQ_BLOG_ID.NEXTVAL, 1, '저는 뽀리입니다. 꽤 귀엽구요\n잘 부탁합니다.', 120);
-INSERT INTO TB_BLOG
-VALUES (SEQ_BLOG_ID.NEXTVAL, 2, '저는 재롱이입니다. 굉장히 싸납구요\n조심하세요.', 57);
-INSERT INTO TB_BLOG
-VALUES (SEQ_BLOG_ID.NEXTVAL, 3, '저는 담비입니다.\n구운게 아니라 원래 색깔입니다.', 1000);
-INSERT INTO TB_BLOG
-VALUES (SEQ_BLOG_ID.NEXTVAL, 4, '저는 환희입니다. \n항상 감사하구요.\n주인만 물어요.\n센척 엄청합니다.', 650);
 
 -- 운동 공공데이터 (CSV)
 INSERT INTO TB_EXERCISE (EXERCISE_ID, NAME, MET, CATEGORY)
