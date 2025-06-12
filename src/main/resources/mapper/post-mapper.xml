@@ -27,6 +27,20 @@
         FROM TB_POST
         WHERE POST_ID = #{postId}
     </select>
+    <select id="getPopularPostTop3" resultType="kr.co.khedu.fitroutine.post.model.dto.PopularPost">
+        SELECT POST_ID, TITLE, NICKNAME
+        FROM (
+        SELECT POST_ID, COUNT(*) COUNT
+        FROM TB_POST
+        JOIN TB_POST_LIKE USING(POST_ID)
+        GROUP BY POST_ID
+        ORDER BY 2 DESC
+        )
+        JOIN TB_POST USING (POST_ID)
+        JOIN TB_BLOG USING (BLOG_ID)
+        JOIN TB_MEMBER USING (MEMBER_ID)
+        WHERE ROWNUM &lt;= 3
+    </select>
     <select id="existsPostByMemberId" resultType="int">
         SELECT
             CASE

@@ -1,5 +1,6 @@
 package kr.co.khedu.fitroutine.post.mapper;
 
+import kr.co.khedu.fitroutine.post.model.dto.PopularPost;
 import kr.co.khedu.fitroutine.post.model.dto.PostCreateRequest;
 import kr.co.khedu.fitroutine.post.model.dto.PostResponse;
 import kr.co.khedu.fitroutine.post.model.dto.PostUpdateRequest;
@@ -21,4 +22,6 @@ public interface PostMapper {
     int updatePost(long postId, PostUpdateRequest updateRequest);
 
     int deletePost(long postId);
+
+    List<? extends PopularPost> getPopularPostTop3();
 }

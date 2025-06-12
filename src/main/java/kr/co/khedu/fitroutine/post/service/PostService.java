@@ -1,6 +1,7 @@
 package kr.co.khedu.fitroutine.post.service;
 
 import kr.co.khedu.fitroutine.post.mapper.PostMapper;
+import kr.co.khedu.fitroutine.post.model.dto.PopularPost;
 import kr.co.khedu.fitroutine.post.model.dto.PostCreateRequest;
 import kr.co.khedu.fitroutine.post.model.dto.PostResponse;
 import kr.co.khedu.fitroutine.post.model.dto.PostUpdateRequest;
@@ -33,6 +34,10 @@ public class PostService {
         }
 
         return postResponse;
+    }
+
+    public List<? extends PopularPost> getPopularPostTop3() {
+        return postMapper.getPopularPostTop3();
     }
 
     @Transactional(readOnly = true)

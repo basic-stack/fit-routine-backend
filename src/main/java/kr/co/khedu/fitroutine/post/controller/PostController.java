@@ -3,6 +3,7 @@ package kr.co.khedu.fitroutine.post.controller;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import kr.co.khedu.fitroutine.post.model.dto.PopularPost;
 import kr.co.khedu.fitroutine.post.model.dto.PostCreateRequest;
 import kr.co.khedu.fitroutine.post.model.dto.PostResponse;
 import kr.co.khedu.fitroutine.post.model.dto.PostUpdateRequest;
@@ -36,6 +37,12 @@ public class PostController {
     @GetMapping("/posts/{postId}")
     public ResponseEntity<PostResponse> getPost(@PathVariable long postId) {
         return ResponseEntity.ok(postService.getPost(postId));
+    }
+
+    @GetMapping("/posts/popular")
+    public ResponseEntity<?> getPopularPostTOP3() {
+        return ResponseEntity.ok(postService.getPopularPostTop3());
+
     }
 
     @PreAuthorize("@blogService.isBlogOwner(#blogId, principal)")
