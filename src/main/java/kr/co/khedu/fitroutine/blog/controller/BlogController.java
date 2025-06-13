@@ -29,6 +29,15 @@ public class BlogController {
         return ResponseEntity.ok(blogService.getBlog(blogId));
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<BlogResponse> getMyBlog(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return ResponseEntity.ok(
+                blogService.getBlog(
+                        blogService.getBlogId(userDetails.getMemberId())
+                )
+        );
+    }
+
     @PreAuthorize("@blogService.isBlogOwner(#blogId, principal)")
     @PatchMapping("/{blogId}")
     public ResponseEntity<BlogResponse> updateBlog(

@@ -81,7 +81,7 @@ CREATE TABLE TB_TODO
     STARTED_AT  DATE                                                                             NOT NULL,
     ENDED_AT    DATE                                                                             NOT NULL,
     PURPOSE     VARCHAR2(30) CHECK (PURPOSE IN ('ENDURANCE', 'STRENGTH', 'MAINTENANCE', 'DIET')) NOT NULL,
-    CATEGORY    VARCHAR2(8)                                                                      NOT NULL,
+    CATEGORY    VARCHAR2(8)  CHECK (CATEGORY IN ('MENU', 'EXERCISE'))                            NOT NULL,
     DAY_REPEAT  NUMBER,
     TDEE        NUMBER,
     GOAL_WEIGHT NUMBER,
