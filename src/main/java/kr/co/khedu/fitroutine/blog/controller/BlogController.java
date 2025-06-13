@@ -24,6 +24,13 @@ public class BlogController {
         this.blogService = blogService;
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<Long> getBlogId(
+            @AuthenticationPrincipal UserDetailsImpl userDetails
+    ) {
+        return ResponseEntity.ok(blogService.getBlogId(userDetails.getMemberId()));
+    }
+
     @GetMapping("/{blogId}")
     public ResponseEntity<BlogResponse> getBlog(@PathVariable long blogId) {
         return ResponseEntity.ok(blogService.getBlog(blogId));
