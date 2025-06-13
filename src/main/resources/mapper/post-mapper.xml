@@ -44,9 +44,9 @@
             P.BLOG_ID,
             M.NICKNAME
         FROM TB_POST P
-        WHERE P.POST_ID = #{postId}
             JOIN TB_BLOG B ON B.BLOG_ID = P.BLOG_ID
             JOIN TB_MEMBER M ON M.MEMBER_ID = B.MEMBER_ID
+        WHERE P.POST_ID = #{postId}
     </select>
     <select id="existsPostByMemberId" resultType="int">
         SELECT
