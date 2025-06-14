@@ -9,7 +9,7 @@ public final class MemberResponse {
     private final String nickname;
     private final String birthAt;
     private final String phone;
-    private final char gender;
+    private final MemberGender gender;
     private final int height;
     private final int weight;
 
@@ -19,7 +19,7 @@ public final class MemberResponse {
             String nickname,
             String birthAt,
             String phone,
-            char gender,
+            MemberGender gender,
             int height,
             int weight
     ) {

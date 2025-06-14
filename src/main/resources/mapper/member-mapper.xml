@@ -31,6 +31,32 @@
         FROM TB_MEMBER
         WHERE EMAIL = #{email}
     </select>
+    <insert id="insertMember" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberCreateRequest">
+        <selectKey keyProperty="memberId" order="BEFORE" resultType="long">
+            SELECT SEQ_MEMBER_ID.NEXTVAL
+            FROM DUAL
+        </selectKey>
+        INSERT INTO TB_MEMBER
+        VALUES (
+            #{memberId},
+            #{email},
+            #{password},
+            #{nickname},
+            #{gender},
+            #{birthAt},
+            #{phone},
+            DEFAULT,
+            DEFAULT
+        )
+    </insert>
+    <insert id="insertMemberDetail" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberCreateRequest">
+        INSERT INTO TB_MEMBER_DETAIL
+        VALUES (
+            #{memberId},
+            #{height},
+            #{weight}
+        )
+    </insert>
     <update id="updateMember" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberUpdateRequest">
         UPDATE TB_MEMBER
         <set>

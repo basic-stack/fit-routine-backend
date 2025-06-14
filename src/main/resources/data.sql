@@ -4,13 +4,15 @@ INSERT INTO TB_MENU
 VALUES (SEQ_MENU_ID.NEXTVAL, '메뉴2', 15, 10, 20, 'SOUPS');
 
 INSERT INTO TB_MEMBER
-VALUES (SEQ_MEMBER_ID.NEXTVAL, 'test_1@gmail.com', '$2a$10$fIfhtxnZYd2hdA9S5x38Deq2HGotuk.ASz0DQe8sQz82umYm7OYMO', '뽀리', 'F', sysdate, '010-1234-5678', sysdate, 'N');
+VALUES (SEQ_MEMBER_ID.NEXTVAL, 'test_1@gmail.com', '$2a$10$MZ.4QKiC2Ruo2JcfYxIWAuepOGYB6vgG42lT6vrgdW7ZAwk5a46aO', '뽀리', 'F', sysdate, '010-1234-5678', sysdate, 'N');
 INSERT INTO TB_MEMBER
-VALUES (SEQ_MEMBER_ID.NEXTVAL, 'test_2@gmail.com', '$2a$10$fIfhtxnZYd2hdA9S5x38Deq2HGotuk.ASz0DQe8sQz82umYm7OYMO', '재롱이', 'M', sysdate, '010-1111-2222', sysdate, 'N');
+VALUES (SEQ_MEMBER_ID.NEXTVAL, 'test_2@gmail.com', '$2a$10$MZ.4QKiC2Ruo2JcfYxIWAuepOGYB6vgG42lT6vrgdW7ZAwk5a46aO', '재롱이', 'M', sysdate, '010-1111-2222', sysdate, 'N');
 INSERT INTO TB_MEMBER
-VALUES (SEQ_MEMBER_ID.NEXTVAL, 'test_3@gmail.com', '$2a$10$fIfhtxnZYd2hdA9S5x38Deq2HGotuk.ASz0DQe8sQz82umYm7OYMO', '가나', 'M', sysdate, '010-1311-2222', sysdate, 'N');
+VALUES (SEQ_MEMBER_ID.NEXTVAL, 'test_3@gmail.com', '$2a$10$MZ.4QKiC2Ruo2JcfYxIWAuepOGYB6vgG42lT6vrgdW7ZAwk5a46aO', '가나', 'M', sysdate, '010-1311-2222', sysdate, 'N');
 INSERT INTO TB_MEMBER
-VALUES (SEQ_MEMBER_ID.NEXTVAL, 'test_4@gmail.com', '$2a$10$fIfhtxnZYd2hdA9S5x38Deq2HGotuk.ASz0DQe8sQz82umYm7OYMO', '다라', 'F', sysdate, '010-1611-2222', sysdate, 'N');
+VALUES (SEQ_MEMBER_ID.NEXTVAL, 'test_4@gmail.com', '$2a$10$MZ.4QKiC2Ruo2JcfYxIWAuepOGYB6vgG42lT6vrgdW7ZAwk5a46aO', '다라', 'F', sysdate, '010-1611-2222', sysdate, 'N');
+INSERT INTO TB_MEMBER
+VALUES (SEQ_MEMBER_ID.NEXTVAL, 'test_5@gmail.com', '$2a$10$MZ.4QKiC2Ruo2JcfYxIWAuepOGYB6vgG42lT6vrgdW7ZAwk5a46aO', '마라마', 'F', sysdate, '010-1811-2222', sysdate, 'N');
 
 INSERT INTO TB_BLOG
 VALUES (SEQ_BLOG_ID.NEXTVAL, 1, '저는 뽀리입니다. 꽤 귀엽구요\n잘 부탁합니다.', 120);
@@ -22,13 +24,13 @@ INSERT INTO TB_BLOG
 VALUES (SEQ_BLOG_ID.NEXTVAL, 4, '저는 환희입니다. \n항상 감사하구요.\n주인만 물어요.\n센척 엄청합니다.', 650);
 
 INSERT INTO TB_MEMBER_DETAIL
-VALUES (SEQ_MEMBER_DETAIL_ID.NEXTVAL, 1, 164, 66);
+VALUES (1, 164, 66);
 INSERT INTO TB_MEMBER_DETAIL
-VALUES (SEQ_MEMBER_DETAIL_ID.NEXTVAL, 2, 170, 70);
+VALUES (2, 170, 70);
 INSERT INTO TB_MEMBER_DETAIL
-VALUES (SEQ_MEMBER_DETAIL_ID.NEXTVAL, 3, 181, 85);
+VALUES (3, 181, 85);
 INSERT INTO TB_MEMBER_DETAIL
-VALUES (SEQ_MEMBER_DETAIL_ID.NEXTVAL, 4, 155, 45);
+VALUES (4, 155, 45);
 
 INSERT INTO TB_FOLLOW
 VALUES (2, 1);

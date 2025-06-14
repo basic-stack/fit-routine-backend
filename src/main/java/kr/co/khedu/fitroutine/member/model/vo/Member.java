@@ -1,9 +1,10 @@
 package kr.co.khedu.fitroutine.member.model.vo;
 
+import kr.co.khedu.fitroutine.member.model.dto.MemberGender;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Getter
 public final class Member {
@@ -11,10 +12,10 @@ public final class Member {
     private final String email;
     private final String password;
     private final String nickname;
-    private final String gender;
-    private final Date birthAt;
+    private final MemberGender gender;
+    private final LocalDate birthAt;
     private final String phone;
-    private final Date createdAt;
+    private final LocalDate createdAt;
     private final boolean isDeleted;
 
     @Builder
@@ -23,10 +24,10 @@ public final class Member {
             String email,
             String password,
             String nickname,
-            String gender,
-            Date birthAt,
+            MemberGender gender,
+            LocalDate birthAt,
             String phone,
-            Date createdAt,
+            LocalDate createdAt,
             boolean isDeleted
     ) {
         this.memberId = memberId;

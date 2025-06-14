@@ -4,6 +4,7 @@ import kr.co.khedu.fitroutine.security.jwt.JwtAuthenticationFilter;
 import kr.co.khedu.fitroutine.security.jwt.JwtTokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -43,9 +44,13 @@ public class SecurityConfig {
                                 .requestMatchers(
                                         "/swagger-ui/**",
                                         "/v3/api-docs/**",
-                                        "/images/**"
+                                        "/images/**",
+                                        "/auth/**"
                                 ).permitAll()
-                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers(
+                                        HttpMethod.POST,
+                                        "/members"
+                                ).anonymous()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(configurer ->
