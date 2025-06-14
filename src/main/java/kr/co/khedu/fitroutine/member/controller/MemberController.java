@@ -1,6 +1,5 @@
 package kr.co.khedu.fitroutine.member.controller;
 
-import kr.co.khedu.fitroutine.member.model.dto.MemberDetailResponse;
 import kr.co.khedu.fitroutine.member.model.dto.MemberUpdateRequest;
 import kr.co.khedu.fitroutine.member.model.dto.MemberResponse;
 import kr.co.khedu.fitroutine.member.service.MemberService;
@@ -25,19 +24,11 @@ public final class MemberController {
         return ResponseEntity.ok(memberService.getMember(userDetails.getMemberId()));
     }
 
-    @GetMapping("/me/detail")
-    public ResponseEntity<MemberDetailResponse> getMemberDetail(
-            @AuthenticationPrincipal UserDetailsImpl userDetails
-    ) {
-        return ResponseEntity.ok(memberService.getMemberDetail(userDetails.getMemberId()));
-    }
-
     @PatchMapping("/me")
-    public ResponseEntity<Void> updateMember(
+    public ResponseEntity<MemberResponse> updateMember(
             @AuthenticationPrincipal UserDetailsImpl userDetails,
             @RequestBody MemberUpdateRequest updateRequest
     ) {
-        memberService.updateMember(userDetails.getMemberId(), updateRequest);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(memberService.updateMember(userDetails.getMemberId(), updateRequest));
     }
 }

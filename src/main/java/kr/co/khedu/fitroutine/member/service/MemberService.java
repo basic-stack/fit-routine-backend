@@ -1,7 +1,6 @@
 package kr.co.khedu.fitroutine.member.service;
 
 import kr.co.khedu.fitroutine.member.mapper.MemberMapper;
-import kr.co.khedu.fitroutine.member.model.dto.MemberDetailResponse;
 import kr.co.khedu.fitroutine.member.model.dto.MemberUpdateRequest;
 import kr.co.khedu.fitroutine.member.model.dto.MemberResponse;
 import org.springframework.stereotype.Service;
@@ -24,17 +23,8 @@ public class MemberService {
         return memberResponse;
     }
 
-    public MemberDetailResponse getMemberDetail(long memberId){
-        MemberDetailResponse memberDetailResponse = memberMapper.selectMemberDetailById(memberId);
-        if (memberDetailResponse == null) {
-            throw new IllegalStateException("회원을 찾을 수 없습니다: " + memberId);
-        }
-
-        return memberDetailResponse;
-    }
-
     @Transactional
-    public void updateMember(long memberId, MemberUpdateRequest updateRequest) {
+    public MemberResponse updateMember(long memberId, MemberUpdateRequest updateRequest) {
         if (updateRequest.getNickname() != null ||
                 updateRequest.getPhone() != null ||
                 updateRequest.getNewPassword() != null
@@ -51,5 +41,7 @@ public class MemberService {
                 throw new IllegalStateException("회원 상세 정보를 수정할 수 없습니다.");
             }
         }
+
+        return getMember(memberId);
     }
 }
