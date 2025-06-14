@@ -15,7 +15,7 @@ public class TodoService {
     }
 
     public List<? extends RoutineMvpTOP3> getRoutineMvpTOP3() {
-        return = todoMapper.getRoutineMvpTOP3();
+        return todoMapper.getRoutineMvpTOP3();
     }
 
     public MyRank getgetRoutineMvpMyRank(long memberId) {
