@@ -21,6 +21,11 @@
         FROM TB_MEMBER
         WHERE EMAIL = #{email}
     </select>
+    <select id="selectCurrentPassword" resultType="kr.co.khedu.fitroutine.member.model.dto.MemberPassword">
+        SELECT PASSWORD
+        FROM TB_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
     <insert id="insertMember" parameterType="kr.co.khedu.fitroutine.member.model.dto.MemberCreateRequest">
         <selectKey keyProperty="memberId" order="BEFORE" resultType="long">
             SELECT SEQ_MEMBER_ID.NEXTVAL

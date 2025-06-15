@@ -26,6 +26,14 @@ public class MemberController {
         return ResponseEntity.ok(memberService.getMember(userDetails.getMemberId()));
     }
 
+    @PostMapping("/me/verify-password")
+    public ResponseEntity<Boolean> checkCurrentPassword(
+            @AuthenticationPrincipal UserDetailsImpl userDetails,
+            @RequestBody MemberPassword password
+    ) {
+        return ResponseEntity.ok(memberService.checkCurrentPassword(userDetails.getMemberId(), password));
+    }
+
     @PostMapping
     public ResponseEntity<MemberCreateResponse> createMember(
             @RequestBody @Valid MemberCreateRequest createRequest

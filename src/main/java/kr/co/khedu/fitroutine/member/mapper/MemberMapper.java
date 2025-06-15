@@ -2,6 +2,7 @@ package kr.co.khedu.fitroutine.member.mapper;
 
 import jakarta.annotation.Nullable;
 import kr.co.khedu.fitroutine.member.model.dto.MemberCreateRequest;
+import kr.co.khedu.fitroutine.member.model.dto.MemberPassword;
 import kr.co.khedu.fitroutine.member.model.dto.MemberUpdateRequest;
 import kr.co.khedu.fitroutine.member.model.dto.MemberResponse;
 import kr.co.khedu.fitroutine.member.model.vo.Member;
@@ -20,4 +21,6 @@ public interface MemberMapper {
     int updateMember(long memberId, MemberUpdateRequest updateRequest);
 
     int updateMemberDetail(long memberId, MemberUpdateRequest updateRequest);
+
+    MemberPassword selectCurrentPassword(long memberId);
 }

@@ -67,4 +67,11 @@ public class MemberService {
 
         return getMember(memberId);
     }
+
+    public boolean checkCurrentPassword(long memberId, MemberPassword password) {
+        String inputPassword = password.getPassword(); // 입력값
+        MemberPassword storedPassword = memberMapper.selectCurrentPassword(memberId); // DB에서 조회한 값
+
+        return passwordEncoder.matches(inputPassword, storedPassword.getPassword());
+    }
 }
