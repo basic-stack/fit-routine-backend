@@ -31,4 +31,6 @@ public interface PostMapper {
     int likePost(long memberId, long postId);
 
     int unlikePost(long memberId, long postId);
+
+    int checkPermissionPost(long memberId, long postId);
 }

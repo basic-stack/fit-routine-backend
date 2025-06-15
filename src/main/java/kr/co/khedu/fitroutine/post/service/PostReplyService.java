@@ -2,6 +2,7 @@ package kr.co.khedu.fitroutine.post.service;
 
 import kr.co.khedu.fitroutine.post.mapper.PostReplyMapper;
 import kr.co.khedu.fitroutine.post.model.dto.ReplyCreateRequest;
+import kr.co.khedu.fitroutine.post.model.dto.ReplyDetail;
 import kr.co.khedu.fitroutine.post.model.dto.ReplyLikesResponse;
 import kr.co.khedu.fitroutine.post.model.dto.ReplyResponse;
 import kr.co.khedu.fitroutine.security.model.dto.UserDetailsImpl;
@@ -94,5 +95,25 @@ public class PostReplyService {
         if (postReplyMapper.unlikeReply(memberId, postId) != 1) {
             throw new NoSuchElementException("포스트 좋아요가 존재하지 않습니다. id=" + postId + ", followed=" + memberId);
         }
+    }
+
+    public ReplyDetail getReplyDetails(long replyId) {
+        ReplyDetail replyDetail = postReplyMapper.getReplyDetail(replyId);
+        if(replyDetail == null) {
+            throw new NoSuchElementException("댓글이 존재하지 않습니다. id=" + replyId);
+        }
+        return replyDetail;
+    }
+
+    public Boolean checkPermissionReply(long memberId, long replyId) {
+        return (postReplyMapper.checkPermissionPost(memberId, replyId) == 1);
+    }
+
+    public ReplyResponse updateReply(long memberId, long replyId, String content) {
+        int result = postReplyMapper.updateReply(memberId, replyId, content);
+        if (result == 0) {
+            throw new NoSuchElementException("댓글이 존재하지 않습니다. id=" + replyId);
+        }
+        return getReply(replyId);
     }
 }

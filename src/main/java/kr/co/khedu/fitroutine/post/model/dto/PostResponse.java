@@ -13,7 +13,7 @@ public final class PostResponse {
     private final String category;
     private final LocalDateTime createdAt;
     private final long blogId;
-    private final String author;
+    private final String nickname;
 
     @Builder
     private PostResponse(
@@ -23,7 +23,7 @@ public final class PostResponse {
             String category,
             LocalDateTime createdAt,
             long blogId,
-            String author
+            String nickname
     ) {
         this.postId = postId;
         this.title = title;
@@ -31,6 +31,6 @@ public final class PostResponse {
         this.category = category;
         this.createdAt = createdAt;
         this.blogId = blogId;
-        this.author = author;
+        this.nickname = nickname;
     }
 }

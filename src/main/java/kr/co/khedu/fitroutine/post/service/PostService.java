@@ -93,4 +93,8 @@ public class PostService {
             throw new NoSuchElementException("포스트 좋아요가 존재하지 않습니다. id=" + postId + ", followed=" + memberId);
         }
     }
+
+    public Boolean checkPermissionPost(long memberId, long postId) {
+        return (postMapper.checkPermissionPost(memberId, postId) == 1);
+    }
 }

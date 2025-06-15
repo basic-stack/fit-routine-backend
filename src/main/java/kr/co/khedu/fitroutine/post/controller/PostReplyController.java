@@ -1,9 +1,7 @@
 package kr.co.khedu.fitroutine.post.controller;
 
 import jakarta.validation.Valid;
-import kr.co.khedu.fitroutine.post.model.dto.ReplyCreateRequest;
-import kr.co.khedu.fitroutine.post.model.dto.ReplyLikesResponse;
-import kr.co.khedu.fitroutine.post.model.dto.ReplyResponse;
+import kr.co.khedu.fitroutine.post.model.dto.*;
 import kr.co.khedu.fitroutine.post.service.PostReplyService;
 import kr.co.khedu.fitroutine.security.model.dto.UserDetailsImpl;
 import org.springframework.http.ResponseEntity;
@@ -79,5 +77,27 @@ public class PostReplyController {
     ) {
         postReplyService.unlikeReply(userDetails.getMemberId(), replyId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/replies/{replyId}/details")
+    public ResponseEntity<ReplyDetail> getReplyDetails(@PathVariable long replyId) {
+        return ResponseEntity.ok(postReplyService.getReplyDetails(replyId));
+    }
+
+    @GetMapping("/replies/{replyId}/permissions")
+    public ResponseEntity<Boolean> checkPermissionReply (
+            @AuthenticationPrincipal UserDetailsImpl userDetails,
+            @PathVariable long replyId
+    ) {
+        return ResponseEntity.ok(postReplyService.checkPermissionReply(userDetails.getMemberId(), replyId));
+    }
+
+    @PatchMapping("/replies/{replyId}")
+    public ResponseEntity<ReplyResponse> updateReply(
+            @AuthenticationPrincipal UserDetailsImpl userDetails,
+            @PathVariable long replyId,
+            @RequestBody ReplyUpdateRequest replyUpdateRequest
+    ) {
+        return ResponseEntity.ok(postReplyService.updateReply(userDetails.getMemberId(), replyId, replyUpdateRequest.getContent()));
     }
 }

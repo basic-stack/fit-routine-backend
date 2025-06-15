@@ -1,6 +1,7 @@
 package kr.co.khedu.fitroutine.post.mapper;
 
 import kr.co.khedu.fitroutine.post.model.dto.ReplyCreateRequest;
+import kr.co.khedu.fitroutine.post.model.dto.ReplyDetail;
 import kr.co.khedu.fitroutine.post.model.dto.ReplyLikesResponse;
 import kr.co.khedu.fitroutine.post.model.dto.ReplyResponse;
 import org.apache.ibatis.annotations.Mapper;
@@ -27,4 +28,10 @@ public interface PostReplyMapper {
     int likeReply(long memberId, long replyId);
 
     int unlikeReply(long memberId, long replyId);
+
+    ReplyDetail getReplyDetail(long replyId);
+
+    int checkPermissionPost(long memberId, long replyId);
+
+    int updateReply(long memberId, long replyId, String content);
 }

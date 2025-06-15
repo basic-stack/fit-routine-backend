@@ -111,4 +111,12 @@ public class PostController {
         postService.unlikePost(userDetails.getMemberId(), postId);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/posts/{postId}/permissions")
+    public ResponseEntity<Boolean> checkPermissionPost(
+            @AuthenticationPrincipal UserDetailsImpl userDetails,
+            @PathVariable long postId
+    ) {
+        return ResponseEntity.ok(postService.checkPermissionPost(userDetails.getMemberId(), postId));
+    }
 }

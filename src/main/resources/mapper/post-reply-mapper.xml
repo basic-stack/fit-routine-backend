@@ -102,4 +102,38 @@
         WHERE MEMBER_ID = #{memberId}
         AND REPLY_ID = #{replyId}
     </delete>
+    <select id="getReplyDetail" resultType="kr.co.khedu.fitroutine.post.model.dto.ReplyDetail">
+        SELECT
+            REPLY_ID,
+            BLOG_ID,
+            GENDER,
+            NICKNAME,
+            CONTENT,
+            R.CREATED_AT,
+            PARENT_ID
+        FROM TB_REPLY R
+        JOIN TB_MEMBER USING (MEMBER_ID)
+        JOIN TB_BLOG USING (MEMBER_ID)
+        WHERE REPLY_ID=#{replyId}
+    </select>
+
+    <select id="checkPermissionPost" resultType="int">
+        SELECT CASE
+        WHEN EXISTS (
+            SELECT 1
+            FROM TB_REPLY R
+            JOIN TB_MEMBER M USING (MEMBER_ID)
+            WHERE REPLY_ID = #{replyId} AND MEMBER_ID = #{memberId}
+        )
+        THEN 1
+        ELSE 0
+        END
+        FROM DUAL
+    </select>
+
+    <update id="updateReply">
+        UPDATE TB_REPLY
+            SET CONTENT = #{content}
+        WHERE REPLY_ID = #{replyId} AND MEMBER_ID = #{memberId}
+    </update>
 </mapper>
