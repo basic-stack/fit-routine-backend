@@ -31,4 +31,56 @@
         JOIN TB_MEMBER USING(NICKNAME)
         WHERE MEMBER_ID = #{memberId}
     </select>
+
+    <insert id="createRoutineInfo"
+            parameterType="kr.co.khedu.fitroutine.todo.model.dto.RoutineInfo"
+            useGeneratedKeys="true" keyProperty="routineInfo.todoId" keyColumn="TODO_ID">
+        INSERT INTO TB_TODO VALUES
+        (
+            SEQ_TODO_ID.NEXTVAL,
+            #{memberId},
+            #{routineInfo.startedAt},
+            #{routineInfo.endedAt},
+            #{routineInfo.purpose},
+            #{routineInfo.category},
+            #{routineInfo.dayRepeat},
+            #{routineInfo.tdee},
+            #{routineInfo.goalWeight}
+        )
+    </insert>
+
+    <select id="getTodoIdByMemberId" resultType="_int">
+        SELECT TODO_ID
+        FROM TB_TODO
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <insert id="insertDailyExercise"
+        parameterType="kr.co.khedu.fitroutine.exercise.model.dto.DailyExercises"
+        useGeneratedKeys="true" keyProperty="dailyExerciseId" keyColumn="DAILY_EXERCISE_ID">
+        INSERT INTO TB_DAILY_EXERCISE VALUES
+        (
+            SEQ_DAILY_EXERCISE_ID.NEXTVAL,
+            #{todoId}, #{dayNo}
+        )
+    </insert>
+
+    <insert id="insertExerciseDetail">
+        INSERT INTO TB_EXERCISE_DETAIL VALUES
+        (
+            SEQ_EXERCISE_DETAIL_ID.NEXTVAL,
+            #{dailyExerciseId},
+            #{exerciseId}
+        )
+    </insert>
+
+    <insert id="createExerciseRoutine"
+            parameterType="kr.co.khedu.fitroutine.exercise.model.dto.ExerciseRoutineList">
+        INSERT INTO TB_DAILY_EXERCISE VALUES
+        (
+            SEQ_DAILY_EXERCISE_ID.NEXTVAL,
+            10,
+            2
+        )
+    </insert>
 </mapper>

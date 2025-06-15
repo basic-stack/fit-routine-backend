@@ -1,6 +1,6 @@
 package kr.co.khedu.fitroutine.exercise.controller;
 
-import kr.co.khedu.fitroutine.exercise.model.dto.ExerciseRoutine;
+import kr.co.khedu.fitroutine.exercise.model.dto.ExerciseRoutineList;
 import kr.co.khedu.fitroutine.exercise.model.vo.ExerciseOpenData;
 import kr.co.khedu.fitroutine.exercise.service.ExerciseService;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +18,12 @@ public final class ExerciseController {
     }
 
     @GetMapping("/open-data")
-    public ResponseEntity<List<? extends ExerciseOpenData>> getAllExerciseOpenDataList() {
-        return ResponseEntity.ok(exerciseService.getAllExerciseOpenDataList());
+    public ResponseEntity<List<? extends ExerciseOpenData>> getAllExerciseOpenDataList(@RequestParam String purpose) {
+        return ResponseEntity.ok(exerciseService.getAllExerciseOpenDataList(purpose));
     }
 
     @GetMapping("/random-routine")
-    public ResponseEntity<ExerciseRoutine> getRandomExerciseRoutine(@RequestParam int dayRepeat, @RequestParam String purpose){
+    public ResponseEntity<ExerciseRoutineList> getRandomExerciseRoutine(@RequestParam int dayRepeat, @RequestParam String purpose){
         return ResponseEntity.ok(exerciseService.getRandomExerciseRoutineTransform(dayRepeat, purpose));
     }
 

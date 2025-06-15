@@ -1,7 +1,8 @@
 package kr.co.khedu.fitroutine.exercise.service;
 
 import kr.co.khedu.fitroutine.exercise.mapper.ExerciseMapper;
-import kr.co.khedu.fitroutine.exercise.model.dto.ExerciseRoutine;
+import kr.co.khedu.fitroutine.todo.model.dto.RoutineInfo;
+import kr.co.khedu.fitroutine.exercise.model.dto.ExerciseRoutineList;
 import kr.co.khedu.fitroutine.exercise.model.vo.ExerciseOpenData;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,8 @@ public final class ExerciseService {
         this.exerciseMapper = exerciseMapper;
     }
 
-    public List<? extends ExerciseOpenData> getAllExerciseOpenDataList() {
-        return exerciseMapper.getAllExerciseOpenDataList();
+    public List<? extends ExerciseOpenData> getAllExerciseOpenDataList(String purpose) {
+        return exerciseMapper.getAllExerciseOpenDataList(purpose);
     }
 
     // 운동 루틴 랜덤 추출
@@ -26,7 +27,7 @@ public final class ExerciseService {
     }
 
     // 운동 루틴 랜덤 추출을 통해 Front에서 사용할 형태로 변환
-    public ExerciseRoutine getRandomExerciseRoutineTransform(int dayRepeat, String purpose) {
+    public ExerciseRoutineList getRandomExerciseRoutineTransform(int dayRepeat, String purpose) {
         List<Integer> randomExerciseList = (List<Integer>) getRandomExerciseRoutine(dayRepeat, purpose);
         /*
             0 : 0 ~ 4
@@ -37,16 +38,23 @@ public final class ExerciseService {
          */
         List<List<Integer>> exerciseList = new ArrayList<>();
         for (int i = 0; i < dayRepeat; i++) {
-            int start = i * dayRepeat;
+            int start = i * 5;
             int end = start + 5;
 
             exerciseList.add(randomExerciseList.subList(start, end));
         }
-        return new ExerciseRoutine(dayRepeat, exerciseList);
+        return new ExerciseRoutineList(exerciseList);
     }
 
     public ExerciseOpenData getExerciseById(int id) {
         return exerciseMapper.getExerciseById(id);
     }
 
+    public int registExerciseRoutine(long memberId, RoutineInfo routineInfo) {
+        int result = exerciseMapper.registExerciseRoutine(memberId, routineInfo);
+        if (exerciseMapper.registExerciseRoutine(memberId, routineInfo) <= 0) {
+            throw new IllegalStateException("루틴을 등록할 수 없습니다.");
+        }
+        return result;
+    }
 }
